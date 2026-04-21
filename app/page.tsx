@@ -81,7 +81,7 @@ function ContactForm() {
       <div className="flex justify-center">
         <div
           className="cf-turnstile"
-          data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"
+          data-sitekey="invalid_key"
           data-theme="dark"
         />
       </div>
