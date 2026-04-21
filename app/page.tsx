@@ -67,13 +67,12 @@ function ContactForm() {
         required
       />
 
-<div
-  className="flex justify-center"
-  dangerouslySetInnerHTML={{
-    __html: `<div class="cf-turnstile" data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"></div>`,
-  }}
-/>
-
+<div className="flex justify-center">
+  <div
+    className="cf-turnstile"
+    data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"
+  />
+</div>
 
       <Button
         type="submit"
