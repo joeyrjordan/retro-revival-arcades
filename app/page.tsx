@@ -19,11 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function ArcadeSite() {
 
-React.useEffect(() => {
-  (window as any).onTurnstileSuccess = (token: string) => {
-    (window as any).turnstileToken = token;
-  };
-}, []);
+
 
 function ContactForm() {
   const [loading, setLoading] = React.useState(false);
@@ -34,7 +30,7 @@ function ContactForm() {
   <div
     className="cf-turnstile"
     data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"
-    data-callback="onTurnstileSuccess"
+    data-theme="dark"
   />
 </div>
 
@@ -105,7 +101,6 @@ function ContactForm() {
         <div
   className="cf-turnstile"
   data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"
-  data-callback="onTurnstileSuccess"
 />
       </div>
 
