@@ -8,7 +8,7 @@ const luckiestGuy = Luckiest_Guy({
 });
 
 
-
+import Script from "next/script";
 import React from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -67,6 +67,14 @@ function ContactForm() {
         required
       />
 
+<div
+  className="flex justify-center"
+  dangerouslySetInnerHTML={{
+    __html: `<div class="cf-turnstile" data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"></div>`,
+  }}
+/>
+
+
       <Button
         type="submit"
         className="w-full bg-teal-600 hover:bg-teal-700 shadow-[0_0_20px_rgba(20,184,166,0.4)]"
@@ -101,6 +109,13 @@ function AnimatedCard({ children, delay = 0 }: any) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white overflow-x-hidden">
+
+<Script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+/>
+
 {/* HERO */}
 <section className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
   {/* Background video */}
