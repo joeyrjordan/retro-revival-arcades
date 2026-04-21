@@ -19,51 +19,58 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function ArcadeSite() {
 
+React.useEffect(() => {
+  (window as any).onTurnstileSuccess = (token: string) => {
+    (window as any).turnstileToken = token;
+  };
+}, []);
+
 function ContactForm() {
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const formRef = React.useRef<HTMLFormElement>(null);
-  const turnstileRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    // Ensure Turnstile loads only once per mount
-    if (
-      typeof window !== "undefined" &&
-      (window as any).turnstile &&
-      turnstileRef.current &&
-      turnstileRef.current.childNodes.length === 0
-    ) {
-      (window as any).turnstile.render(turnstileRef.current, {
-        sitekey: "0x4AAAAAADAa3WD4Sp0P1ByD",
-        theme: "dark",
-      });
-    }
-  }, []);
+ 
+<div className="flex justify-center">
+  <div
+    className="cf-turnstile"
+    data-sitekey="0x4AAAAAADAa3WD4Sp0P1ByD"
+    data-callback="onTurnstileSuccess"
+  />
+</div>
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    setSuccess(false);
+  e.preventDefault();
+  setLoading(true);
+  setSuccess(false);
 
-    const formData = new FormData(e.currentTarget);
+  const formData = new FormData(e.currentTarget);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: formData,
-    });
+  // attach Turnstile token
+  const token = (window as any).turnstileToken;
 
-    setLoading(false);
-
-    if (res.ok) {
-      setSuccess(true);
-      formRef.current?.reset();
-
-      // reset Turnstile safely
-      if ((window as any).turnstile && turnstileRef.current) {
-        (window as any).turnstile.reset(turnstileRef.current);
-      }
-    }
+  if (token) {
+    formData.append("cf-turnstile-response", token);
   }
+
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    body: formData,
+  });
+
+  setLoading(false);
+
+  if (res.ok) {
+    setSuccess(true);
+    e.currentTarget.reset();
+
+    // reset widget
+    if ((window as any).turnstile) {
+      (window as any).turnstile.reset();
+    }
+  } else {
+    console.error("Form failed:", await res.text());
+  }
+}
 
   return (
     <form
