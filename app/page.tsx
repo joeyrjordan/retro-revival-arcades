@@ -224,7 +224,7 @@ function AnimatedCard({ children, delay = 0 }: any) {
     muted
     loop
     playsInline
-    className="absolute inset-0 w-full h-full object-contain md:object-cover bg-black"
+    className="absolute inset-0 w-full h-full object-cover scale-95 md:scale-100"
   >
     <source src="/hero.mp4" type="video/mp4" />
   </video>
