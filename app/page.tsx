@@ -217,7 +217,7 @@ function AnimatedCard({ children, delay = 0 }: any) {
 
 
 {/* HERO */}
-<section className="relative h-[110vh] md:h-screen pt-20 flex items-center justify-center text-center px-6 overflow-hidden">
+<section className="relative h-[85vh] md:h-screen pt-20 flex items-center justify-center text-center px-6 overflow-hidden">
   {/* Background video */}
   <video
     autoPlay
