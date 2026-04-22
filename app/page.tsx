@@ -217,14 +217,14 @@ function AnimatedCard({ children, delay = 0 }: any) {
 
 
 {/* HERO */}
-<section className="relative h-screen pt-20 flex items-center justify-center text-center px-6 overflow-hidden">
+<section className="relative h-[110vh] md:h-screen pt-20 flex items-center justify-center text-center px-6 overflow-hidden">
   {/* Background video */}
   <video
     autoPlay
     muted
     loop
     playsInline
-    className="absolute inset-0 w-full h-full object-contain object-top md:object-cover bg-black"
+    className="absolute inset-0 w-full h-full object-cover"
   >
     <source src="/hero.mp4" type="video/mp4" />
   </video>
