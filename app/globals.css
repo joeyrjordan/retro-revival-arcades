@@ -168,3 +168,30 @@
 .neon-pulse {
   animation: neon-pulse 2.5s ease-in-out infinite;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR GLOW */
+.navbar-glow {
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+/* subtle pulse animation */
+@keyframes navbarPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(20, 184, 166, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(20, 184, 166, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(20, 184, 166, 0.12);
+  }
+}
+
+.navbar-glow {
+  animation: navbarPulse 4s ease-in-out infinite;
+}

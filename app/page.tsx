@@ -20,6 +20,67 @@ import { Textarea } from "@/components/ui/textarea";
 export default function ArcadeSite() {
 
 
+function Navbar() {
+const [scrolled, setScrolled] = React.useState(false);
+
+React.useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > window.innerHeight * 0.8);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+  return (
+
+<nav
+  className={`fixed top-0 left-0 w-full z-50 ${luckiestGuy.className} transition-all duration-500
+    ${
+      scrolled
+        ? "backdrop-blur-md bg-black/50 border-b border-white/10 navbar-glow"
+        : "bg-transparent border-transparent"
+    }`}
+>
+
+      <div className="max-w-6xl mx-auto px-6 py-4 grid grid-cols-3 items-center">
+
+        {/* LEFT: LOGO */}
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="Logo" className="w-25 h-35" />
+          <span className="text-white font-bold text-lg hidden sm:block">
+
+          </span>
+        </div>
+
+        {/* RIGHT: DESKTOP MENU */}
+        <div className="hidden md:flex gap-8 text-lg text-gray-300">
+          <a href="#" className="hover:text-teal-400 hover:drop-shadow-[0_0_6px_#14b8a6] transition">Home</a>
+          <a href="#services" className="hover:text-teal-400 hover:drop-shadow-[0_0_6px_#14b8a6] transition">Services</a>
+          <a href="#contact" className="hover:text-teal-400 hover:drop-shadow-[0_0_6px_#14b8a6] transition">Contact</a>
+        </div>
+
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* MOBILE DROPDOWN */}
+      {open && (
+        <div className="md:hidden bg-black/90 px-6 pb-4 space-y-3 text-gray-300">
+          <a href="#" className="block hover:text-teal-400">Home</a>
+          <a href="#gallery" className="block hover:text-teal-400">Gallery</a>
+          <a href="#contact" className="block hover:text-teal-400">Contact</a>
+        </div>
+      )}
+    </nav>
+  );
+}
+
 
 function ContactForm() {
   const [loading, setLoading] = React.useState(false);
@@ -68,7 +129,12 @@ function ContactForm() {
   }
 }
 
+
+
   return (
+
+
+
     <form
       ref={formRef}
       onSubmit={handleSubmit}
@@ -136,7 +202,10 @@ function AnimatedCard({ children, delay = 0 }: any) {
 }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white overflow-x-hidden">
+  <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white overflow-x-hidden">
+
+    <Navbar />
+
 
 <Script
   src="https://challenges.cloudflare.com/turnstile/v0/api.js"
@@ -144,8 +213,10 @@ function AnimatedCard({ children, delay = 0 }: any) {
   defer
 />
 
+
+
 {/* HERO */}
-<section className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+<section className="relative h-screen pt-20 flex items-center justify-center text-center px-6 overflow-hidden">
   {/* Background video */}
   <video
     autoPlay
@@ -240,7 +311,7 @@ function AnimatedCard({ children, delay = 0 }: any) {
  {/* CONTACT */}
 
 
-<section className="px-6 py-20">
+<section id="contact" className="px-6 py-20">
 <h2 className={`text-4xl md:text-5xl text-center mb-12 text-teal-400 ${luckiestGuy.className} neon-pulse`}>
   Contact Us
 </h2>
