@@ -219,12 +219,14 @@ export default function ArcadeSite() {
   const showcaseItems = [
     { title: "Fighting", video: "/fighting.mp4" },
     { title: "Linked Racing", video: "/racing.mp4" },
-    { title: "Shooting", video: "/shooting.mp4" },
+
+    { title: "Shooting", image: "/shooting.jpg" },
 
     { title: "Linked Motorcycle", video: "/motorcycle.mp4" },
     {
       title: "True Force Feedback",
       video: "/ffb.mp4",
+      position: "object-[center_30%]",
     },
     {
       title: "Updater App (Beta Testing)",
@@ -312,7 +314,9 @@ export default function ArcadeSite() {
           muted
           loop
           playsInline
-          className="rounded-2xl w-full h-48 object-cover border border-teal-500/20 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(20,184,166,0.6)]"
+className={`rounded-2xl w-full h-48 object-cover ${
+  item.position || "object-center"
+} border border-teal-500/20 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(20,184,166,0.6)]`}
         >
           <source src={item.video} type="video/mp4" />
         </video>
